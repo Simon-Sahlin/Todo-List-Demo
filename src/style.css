@@ -43,6 +43,7 @@
 
     --stone050: #fafafa;
     --stone100: #f5f5f4;
+    --stone150: #EEEDEC;
     --stone200: #e7e5e4;
     --stone300: #c9c6c3;
     --stone350: #d6d3d1;
@@ -186,4 +187,71 @@ h1{
 
 #taskHeader{
     background-color: var(--stone200);
+    padding: 10px 25px;
+}
+
+/* ------------------------------------ - ----------------------------------- */
+
+#content{
+    padding: 20px;
+}
+
+.taskList{
+    background-color: var(--stone150);
+    box-shadow: 0px 1px 2px var(--stone400);
+    border-radius: 10px;
+    width: 300px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-height: 80vh;
+}
+.listHeader{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.listFooter{
+    display: flex;
+    justify-content: flex-start;
+    gap: 5px;
+    align-items: center;
+}
+.taskList svg{
+    height: 20px;
+}
+
+.listContent{
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    margin: -10px;
+}
+.task{
+    background-color: var(--stone050);
+    border-radius: 10px;
+    padding: 5px 10px;
+    box-shadow: 0px 1px 2px var(--stone400);
+
+    display: flex;
+    gap: 10px;
+}
+
+.taskCheck{
+    display: flex;
+    align-items: center;
+}
+.taskCheck input{
+    height: 20px;
+    width: 20px;
+}
+.taskContent{
+    flex-grow: 1;
+}
+.taskIcons{
+    display: flex;  
+    gap: 3px;
 }
