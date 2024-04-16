@@ -19,7 +19,6 @@ export class taskList{
     constructor(name, startingObjects = []){
         this.name = name;
         this.tasks = startingObjects;
-        console.log("IM OUT OF MA COME")
         this.element = DOMController.renderNewList(this);
     }
 
