@@ -314,6 +314,7 @@ footer{
 .taskCheck input{
     height: 20px;
     width: 20px;
+    cursor: pointer;
 }
 .taskContent{
     flex-grow: 1;
