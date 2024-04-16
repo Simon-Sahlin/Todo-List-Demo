@@ -1,6 +1,45 @@
+// function importAll(r) {
+//     let images = {};
+//     r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });
+//     return images;
+// }
+
+// function fetchRawSVG(url, callback) {
+//     fetch(url)
+//         .then(response => response.text())
+//         .then(svgData => callback(svgData))
+//         .catch(error => console.error('Error fetching SVG:', error));
+// }
 
 
 export let SVGAssets = (function(){
+
+    // let icons = importAll(require.context('./img/svg', false, /\.(svg)$/));;
+
+    // console.log("BEFORE")
+    // console.log(icons)
+
+    // Object.keys(icons).forEach(function(key) {
+    //     Object.defineProperty(icons, key.slice(0,-4),
+    //         Object.getOwnPropertyDescriptor(icons, key));
+    //     delete icons[key];
+    // });
+
+    // console.log("AFTER FIRST")
+    // console.log(icons)
+
+    // Object.entries(icons).forEach(([key, value]) => {
+    //     console.log(`${key}: ${value}`)
+    //     icons[key] = "poop";
+    //     fetchRawSVG(value, function(svgData) {
+    //         icons[key] = svgData
+    //     });
+
+    // });
+
+    // console.log("FINISHED")
+    // console.log(icons)
+
 
     let edit = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>pencil-outline</title><path fill="currentColor" d="M14.06,9L15,9.94L5.92,19H5V18.08L14.06,9M17.66,3C17.41,3 17.15,3.1 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18.17,3.09 17.92,3 17.66,3M14.06,6.19L3,17.25V21H6.75L17.81,9.94L14.06,6.19Z" /></svg>`;
     let plus = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>plus</title><path fill="currentColor" d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" /></svg>`;
