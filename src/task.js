@@ -22,13 +22,13 @@ export class taskList{
         this.element = DOMController.renderNewList(this);
     }
 
-    // getTasks(){
-    //     let string = "The tasklist: '" + this.name + "' contains the following tasks: ";
-    //     this.tasks.forEach(e => {
-    //         string += "\n\n"+ JSON.stringify(e);
-    //     });
-    //     return string;
-    // }
+    getTasks(){
+        let string = "The tasklist: '" + this.name + "' contains the following tasks: ";
+        this.tasks.forEach(e => {
+            string += "\n"+e.title;
+        });
+        return string;
+    }
 
     addTask(title, desc = "", date = 0, complete = false, important = false){
         if (title == "")
