@@ -217,6 +217,25 @@ footer{
 #taskHeader{
     background-color: var(--stone200);
     padding: 10px 25px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#taskHeader div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-weight: 500;
+    font-size: 1.1em;
+    opacity: 0.8;
+    margin-right: 30px;
+    padding: 5px 15px;
+    border-radius: 10px;
+}
+
+#taskHeader svg{
+    height: 20px;
 }
 
 /* ------------------------------------ - ----------------------------------- */
