@@ -56,7 +56,7 @@
     --stone950: #0c0a09;
 }
 
-*,h1,h2,h3,h4,h5,p{
+*,h1,h2,h3,h4,h5,p, input{
     font-family: var(--font-body);
 }
 
@@ -347,4 +347,35 @@ footer{
 .task:has(input:checked){
     text-decoration: line-through;
     opacity: 0.5;
+}
+
+/* ------------------------------------ - ----------------------------------- */
+
+.footerActive .text{
+    background-color: var(--stone050);
+    border-radius: 10px;
+    padding: 5px 10px;
+    box-shadow: 0px 1px 2px var(--stone400);
+    border: none;
+    outline: none;
+
+    width: 100%;
+    height: 5.3em;
+    resize: vertical;
+}
+.footerActive .submit{
+    background-color: var(--blue-dark);
+    border: none;
+    color: white;
+    padding: 7px 10px;
+    border-radius: 7px;
+    font-weight: 500;
+    transition: background-color 0.05s;
+}
+.footerActive .submit:hover{
+    background-color: var(--blue);
+}
+
+.footerActive.hidden, .listFooter.hidden{
+    display: none;
 }
