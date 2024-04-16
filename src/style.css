@@ -351,7 +351,7 @@ footer{
 
 /* ------------------------------------ - ----------------------------------- */
 
-.footerActive .text{
+.footerForm .text{
     background-color: var(--stone050);
     border-radius: 10px;
     padding: 5px 10px;
@@ -363,7 +363,7 @@ footer{
     height: 5.3em;
     resize: vertical;
 }
-.footerActive .submit{
+.footerForm .submit{
     background-color: var(--blue-dark);
     border: none;
     color: white;
@@ -372,10 +372,10 @@ footer{
     font-weight: 500;
     transition: background-color 0.05s;
 }
-.footerActive .submit:hover{
+.footerForm .submit:hover{
     background-color: var(--blue);
 }
 
-.footerActive.hidden, .listFooter.hidden{
+.footerForm.hidden, .listFooter.hidden{
     display: none;
 }

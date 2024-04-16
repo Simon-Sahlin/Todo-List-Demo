@@ -28,6 +28,22 @@ let DOMController = (function(){
             //Create Task items
             newList.appendChild(listContent);
 
+            let footerForm = document.createElement("div");
+            footerForm.classList.add("footerForm", "hidden");
+
+                let textarea = document.createElement("textarea")
+                textarea.classList.add("text")
+                textarea.setAttribute("placeholder", "Enter a title for this task...")
+                footerForm.appendChild(textarea);
+
+                let btn = document.createElement("input");
+                btn.classList.add("submit")
+                btn.setAttribute("type","button");
+                btn.setAttribute("value","Add Task");
+                footerForm.appendChild(btn);
+
+            newList.appendChild(footerForm);
+
             let listFooter = document.createElement("div");
             listFooter.classList.add("listFooter", "hoverBackround");
             
@@ -42,6 +58,7 @@ let DOMController = (function(){
         content.appendChild(newList);
 
         listFooter.addEventListener("click", ()=>openNewTaskForm(listData));
+        textarea.addEventListener("focusout", ()=>submitNewTaskForm(textarea.value, listData));
 
         return newList;
     }
@@ -102,16 +119,21 @@ let DOMController = (function(){
     }
     
     function openNewTaskForm(listData){
-        let title = window.prompt("Enter new task")
-        console.log(title);
-        console.log(listData)
-        submitNewTaskForm(title, listData)
+        let e = listData.element;
+        e.querySelector(".footerForm").classList.remove("hidden");
+        e.querySelector(".listFooter").classList.add("hidden");
+        e.querySelector("textarea").focus()
     }
 
     function submitNewTaskForm(title, listData){
+        let e = listData.element;
+        e.querySelector("textarea").value = "";
+        e.querySelector(".footerForm").classList.add("hidden");
+        e.querySelector(".listFooter").classList.remove("hidden");
         listData.addTask(title);
     }
 
     return({renderNewList, renderNewTask});
 })();
 export default DOMController;
+
