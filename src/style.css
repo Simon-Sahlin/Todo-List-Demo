@@ -81,7 +81,7 @@
 #mainWrapper{
     background-color: var(--purple-dark);
     height: 100vh;
-    overflow: hidden;
+    width: 100vw;
     display: grid;
     grid-template-columns: 1fr 3fr;
 }
@@ -92,7 +92,7 @@
     background-color: var(--stone200);
     border-right: 2px solid var(--stone300);
     box-shadow: 0px 0px 5px var(--stone300) inset;
-    /* min-width: 400px; */
+    min-width: 350px;
 
     display: flex;
     flex-direction: column;
@@ -199,6 +199,10 @@ h1{
 
 #taskWrapper{
     background-color: var(--stone050);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 }
 
 #taskHeader{
@@ -210,18 +214,23 @@ h1{
 
 #content{
     padding: 20px;
+    display: flex;
+    gap: 20px;
+    flex-grow: 1;
+    overflow-x: scroll;
 }
 
 .taskList{
     background-color: var(--stone150);
     box-shadow: 0px 1px 2px var(--stone400);
     border-radius: 10px;
-    width: 300px;
+    min-width: 300px;
     padding: 10px;
     display: flex;
     flex-direction: column;
     gap: 15px;
     max-height: 80vh;
+    height: fit-content;
 }
 .listHeader{
     display: flex;
