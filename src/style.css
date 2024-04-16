@@ -66,6 +66,7 @@
 
 .hoverBackround:hover, .iconHover:hover{
     background-color: rgba(0, 0, 0, 0.1);
+    cursor: pointer;
 }
 
 .iconHover{
@@ -123,6 +124,7 @@ h1{
     margin: 0px 30px;
 }
 .filter{
+    cursor: pointer;
     background-color: var(--stone350);
     height: 80px;
     border-radius: 12px;
