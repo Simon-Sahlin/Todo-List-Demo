@@ -60,6 +60,22 @@
     font-family: var(--font-body);
 }
 
+.hoverBackround, .iconHover{
+    transition: background-color 0.05s;
+}
+
+.hoverBackround:hover, .iconHover:hover{
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.iconHover{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 99999px;
+    padding: 4px;
+}
+
 /* -------------------------------------------------------------------------- */
 
 #mainWrapper{
@@ -211,12 +227,21 @@ h1{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: -8px;
+}
+.listHeader p{
+    font-size: 1em;
+    font-weight: 500;
 }
 .listFooter{
     display: flex;
     justify-content: flex-start;
     gap: 5px;
     align-items: center;
+
+    border-radius: 5px;
+    margin: -2px;
+    padding: 2px;
 }
 .taskList svg{
     height: 20px;
@@ -238,6 +263,9 @@ h1{
 
     display: flex;
     gap: 10px;
+    transition: outline .05s;
+    outline: 3px solid rgba(0, 0, 0, 0);
+    transition: opacity .3s;
 }
 
 .taskCheck{
@@ -253,5 +281,30 @@ h1{
 }
 .taskIcons{
     display: flex;  
+    align-items: center;
     gap: 3px;
+    opacity: .7;
+}
+.taskIcons p{
+    font-size: 0.9em;
+}
+.taskEdit{
+    opacity: 0;
+    transition: opacity .05s;
+}
+
+.task:hover{
+    outline: 3px solid var(--blue);
+}
+.task:hover .taskEdit{
+    opacity: 1;
+}
+
+.taskCheck input:checked{
+    color: #05633a;
+}
+
+.task:has(input:checked){
+    text-decoration: line-through;
+    opacity: 0.5;
 }
