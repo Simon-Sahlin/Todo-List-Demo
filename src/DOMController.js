@@ -1,5 +1,5 @@
 import {SVGAssets} from "./assets.js"
-import { task } from "./task.js";
+import { task, taskList } from "./task.js";
 
 let DOMController = (function(){
     
@@ -40,10 +40,11 @@ let DOMController = (function(){
             newList.appendChild(listFooter);
 
         content.appendChild(newList);
+
+        listFooter.addEventListener("click", ()=>openNewTaskForm(listData));
+
         return newList;
     }
-
-
 
     function renderNewTask(taskData, parent){
         let wrapper = parent.querySelector(".listContent");
@@ -100,6 +101,17 @@ let DOMController = (function(){
         return newTask;
     }
     
+    function openNewTaskForm(listData){
+        let title = window.prompt("Enter new task")
+        console.log(title);
+        console.log(listData)
+        submitNewTaskForm(title, listData)
+    }
+
+    function submitNewTaskForm(title, listData){
+        listData.addTask(title);
+    }
+
     return({renderNewList, renderNewTask});
 })();
 export default DOMController;

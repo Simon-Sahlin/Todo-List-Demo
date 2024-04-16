@@ -22,7 +22,7 @@ export class taskList{
         this.element = DOMController.renderNewList(this);
     }
 
-    getTasks(){
+    info(){
         let string = "The tasklist: '" + this.name + "' contains the following tasks: ";
         this.tasks.forEach(e => {
             string += "\n"+e.title;
@@ -31,7 +31,7 @@ export class taskList{
     }
 
     addTask(title, desc = "", date = 0, complete = false, important = false){
-        if (title == "")
+        if (title.replace(/\s+/g, '').length == 0)
             return;
         let newTask = new task(title, this, desc, date, complete, important)
         this.tasks.push(newTask)
