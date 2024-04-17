@@ -379,3 +379,33 @@ footer{
 .footerForm.hidden, .listFooter.hidden{
     display: none;
 }
+
+/* -------------------------------------------------------------------------- */
+/*                                   POPUPS                                   */
+/* -------------------------------------------------------------------------- */
+
+#taskPopup{
+    position: absolute;
+    background-color: rgba(0,0,0,0.7);
+    backdrop-filter: blur(1px);
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#taskPopup > div{
+    width: 45vw;
+    height: 80vh;
+    background-color: var(--stone300);
+    border-radius: 20px;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    padding: 20px;
+}
+
+#taskPopupContent svg{
+    height: 30px;
+}
