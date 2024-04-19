@@ -10,7 +10,7 @@
 :root {
     --red: #ff3860;
     --red-dark: #ff1443;
-    --red-darker: #c00f32;
+    --red-darker: #dc2626;
     --red-light: #ff5c7c;
     --blue: #498afb;
     --blue-dark: #2674fa;
@@ -147,7 +147,7 @@ h1{
     --filterTheme: var(--blue-dark)
 }
 .filter:nth-child(2){
-    --filterTheme: #dc2626
+    --filterTheme: var(--red-darker)
 }
 .filter:nth-child(3){
     --filterTheme: var(--stone900)
@@ -399,13 +399,115 @@ footer{
 #taskPopup > div{
     width: 45vw;
     height: 80vh;
-    background-color: var(--stone300);
+    background-color: var(--stone200);
     border-radius: 20px;
     display: grid;
-    grid-template-columns: 3fr 1fr;
+    grid-template-columns: 7fr 3fr;
     padding: 20px;
+    gap: 20px;
 }
 
 #taskPopupContent svg{
     height: 30px;
+}
+
+
+#taskPopupContent {
+    display: flex;
+    flex-direction: column;
+    gap: 70px;
+}
+
+#taskInfo, #taskDesc{
+    display: flex;
+    gap: 15px;
+}
+
+#taskInfoInner{
+    display: flex;
+    flex-direction: column;
+}
+
+#taskInfoInnerInner{
+    display: flex;
+    margin-top: 10px;
+    gap: 10px;
+}
+
+#taskInfoInnerInner > div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+
+#taskInfoInnerInner svg{
+    height: 20px;
+}
+
+#taskPopupAlarm{
+    background-color: var(--red-dark);
+}
+#taskPopupFlag{
+    background-color: #eab308;
+}
+
+#taskInfoInner > h3{
+    font-size: 1.7em;
+}
+#taskInfoInner > p{
+    font-size: 0.9em;
+}
+#taskDesc h4{
+    font-size: 1.2em;
+    margin-bottom: 5px;
+}
+
+#taskPopupOptions{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+#taskPopupOptionsX{
+    display: flex;
+    flex-direction: row-reverse;
+    margin-top: -10px;
+    margin-right: -10px;
+}
+
+#taskPopupOptionsX svg{
+    height: 25px;
+}
+#taskPopupOptions > p{
+    margin-top: 20px;
+    font-size: 0.8em;
+}
+
+.optionsCard{
+    background-color: var(--stone100);
+    border-radius: 10px;
+    padding: 5px 10px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+}
+.optionsCard svg{
+    height: 20px;
+}
+
+.optionsCard:nth-child(6){
+    background-color: var(--red-darker);
+    color: white;
+}
+
+.optionsCard input{
+    width: 21px;
+}
+.optionsCard p{
+    flex-grow: 1;
 }
