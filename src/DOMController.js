@@ -76,6 +76,7 @@ let taskPopup = (function(){
         currentTask.title = titleInp.value;
         currentTask.desc = descInp.value;
         showTaskPopup(null, currentTask);
+        DOMController.updateTask(currentTask);
     }
 
     let optionDateButt = document.querySelector(".optionsCardDate");
@@ -180,7 +181,24 @@ let DOMController = (function(){
     function renderNewTask(taskData, parent){
         let wrapper = parent.querySelector(".listContent");
 
-            let newTask = document.createElement("div");
+        let newTask = createTaskElement(taskData);
+
+        wrapper.appendChild(newTask);        
+        return newTask;
+    }
+
+    function updateTask(taskData){
+        console.log(taskData.parent.element)
+        console.log(taskData.element)
+        let wrapper = taskData.parent.element;
+
+        let newTask = createTaskElement(taskData);
+
+        wrapper.replaceChild(newTask, taskData.parent.element.children[0]);
+    }
+
+    function createTaskElement(taskData){
+        let newTask = document.createElement("div");
             newTask.classList.add("task");
 
                 let div1 = document.createElement("div");
@@ -227,11 +245,9 @@ let DOMController = (function(){
                     div4.appendChild(div5);
 
                 newTask.appendChild(div4);
+                newTask.addEventListener("click", (event)=>taskPopup.showTaskPopup(event, taskData));
 
-            wrapper.appendChild(newTask);
-
-            newTask.addEventListener("click", (event)=>taskPopup.showTaskPopup(event, taskData))
-        return newTask;
+                return newTask;
     }
     
     function openNewTaskForm(listData){
@@ -249,7 +265,7 @@ let DOMController = (function(){
         listData.addTask(title);
     }
 
-    return({renderNewList, renderNewTask});
+    return({renderNewList, renderNewTask, updateTask});
 })();
 export default DOMController;
 
