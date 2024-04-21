@@ -1,6 +1,120 @@
 import {SVGAssets} from "./assets.js"
 import { task, taskList } from "./task.js";
 
+let taskPopup = (function(){
+    
+    let currentTask = 0;
+    let wrapper = document.querySelector("#taskPopup");
+
+    let h3 = document.querySelector("#taskInfoInner > h3");
+    let listP = document.querySelector("#taskInfoInner > p");
+    let desc = document.querySelector("#taskDesc p");
+
+    let dateCard = document.querySelector("#taskPopupAlarm");
+    let dateCardP = document.querySelector("#taskPopupAlarm p");
+    let flagCard = document.querySelector("#taskPopupFlag");
+
+    let titleInp = document.querySelector("#taskPopup .h3Inp");
+    let descInp = document.querySelector("#taskPopup .pInp");
+
+    function showTaskPopup(eventData, taskData){
+        if (eventData && eventData.target.nodeName == "INPUT")
+            return;
+        
+        currentTask = taskData;
+        wrapper.classList.remove("hide");
+        h3.innerHTML = currentTask.title;
+        listP.innerHTML = "In List " + currentTask.parent.name;
+        desc.innerHTML = currentTask.desc;
+
+        if (currentTask.date != 0){
+            optionDateP.valueAsDate = currentTask.date;
+            dateCard.classList.remove("hide");
+            dateCardP.innerHTML = "Due At: " + currentTask.date.toLocaleDateString("en-US", {day: 'numeric', month: 'long'});
+        }
+        else{
+            optionDateP.valueAsDate = null;
+            dateCard.classList.add("hide");
+        }
+
+        if (taskData.important)
+            flagCard.classList.remove("hide");
+        else
+            flagCard.classList.add("hide");
+    }
+
+    function hideTaskPopup(){
+        wrapper.classList.add("hide");
+    }
+
+    let optionEditButt = document.querySelector(".optionsCard:nth-child(3)");
+    optionEditButt.addEventListener("click", ()=>{toggleEdit()});
+    let editOpen = false;
+    function toggleEdit(){
+        if (editOpen)
+            closeEditTask();
+        else
+            openEditTask();
+    }
+    function openEditTask(){
+        editOpen = true;
+        titleInp.value = currentTask.title;
+        descInp.value = currentTask.desc;
+
+        h3.classList.add("hide");
+        desc.classList.add("hide");
+        titleInp.classList.remove("hide");
+        descInp.classList.remove("hide");
+    }
+    function closeEditTask(){
+        editOpen = false;
+        h3.classList.remove("hide");
+        desc.classList.remove("hide");
+        titleInp.classList.add("hide");
+        descInp.classList.add("hide");
+
+        currentTask.title = titleInp.value;
+        currentTask.desc = descInp.value;
+        showTaskPopup(null, currentTask);
+    }
+
+    let optionDateButt = document.querySelector(".optionsCardDate");
+    let optionDateP = document.querySelector(".optionsCardDate > input");
+    
+    function openDate(){
+        optionDateP.focus()
+    }
+    
+    function updateDate(){
+        if (optionDateP.value != ""){
+            currentTask.date = new Date(optionDateP.value);
+        }
+        else
+            currentTask.date = 0;
+
+        showTaskPopup(null, currentTask);
+    }
+    
+    optionDateButt.addEventListener("click", ()=>{openDate()});
+    optionDateP.addEventListener("focusout", ()=>updateDate());
+    optionDateP.addEventListener("change", ()=>updateDate());
+
+
+    let optionFlagButt = document.querySelector(".optionsCard:nth-child(5)");
+
+    function toggleImportant(){
+        currentTask.important = !currentTask.important;
+        showTaskPopup(null, currentTask);
+    }
+
+    optionFlagButt.addEventListener("click", ()=>toggleImportant());
+
+
+    document.querySelector("#taskPopupOptionsX").addEventListener("click", (event)=>hideTaskPopup(event));
+
+    return {showTaskPopup}
+})();
+
 let DOMController = (function(){
     
     let content = document.querySelector("#content");
@@ -115,6 +229,8 @@ let DOMController = (function(){
                 newTask.appendChild(div4);
 
             wrapper.appendChild(newTask);
+
+            newTask.addEventListener("click", (event)=>taskPopup.showTaskPopup(event, taskData))
         return newTask;
     }
     
