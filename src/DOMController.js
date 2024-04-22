@@ -190,11 +190,12 @@ let DOMController = (function(){
     function updateTask(taskData){
         console.log(taskData.parent.element)
         console.log(taskData.element)
-        let wrapper = taskData.parent.element;
+        let wrapper = taskData.parent.element.children[1];
 
         let newTask = createTaskElement(taskData);
 
-        wrapper.replaceChild(newTask, taskData.parent.element.children[0]);
+        wrapper.replaceChild(newTask, taskData.element);
+        taskData.element = newTask;
     }
 
     function createTaskElement(taskData){
