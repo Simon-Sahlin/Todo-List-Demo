@@ -130,10 +130,25 @@ let DOMController = (function(){
                 pHead.innerHTML = listData.name;
                 listHeader.appendChild(pHead);
 
+                let h2Inp = document.createElement("input");
+                h2Inp.setAttribute("type", "text");
+                h2Inp.classList.add("h2Inp", "hide");
+                listHeader.appendChild(h2Inp);
+
                 let divHead = document.createElement("div");
                 divHead.classList.add("iconHover");
                 divHead.innerHTML = SVGAssets.edit;
                 listHeader.appendChild(divHead);
+
+                let checkIcon = document.createElement("div");
+                checkIcon.classList.add("iconHover", "hide");
+                checkIcon.innerHTML = SVGAssets.check;
+                listHeader.appendChild(checkIcon);
+
+                let binIcon = document.createElement("div");
+                binIcon.classList.add("iconHover", "hide");
+                binIcon.innerHTML = SVGAssets.trash;
+                listHeader.appendChild(binIcon);
 
             newList.appendChild(listHeader);
 
@@ -173,8 +188,43 @@ let DOMController = (function(){
 
         listFooter.addEventListener("click", ()=>openNewTaskForm(listData));
         textarea.addEventListener("focusout", ()=>submitNewTaskForm(textarea.value, listData));
+        divHead.addEventListener("click", ()=>startEditList(listData));
+        checkIcon.addEventListener("click", ()=>endEditList(listData));
+        h2Inp.addEventListener("focusout", ()=>endEditList(listData));
 
         return newList;
+    }
+
+    function startEditList(listData){
+        let title = listData.element.querySelector("p");
+        let inp = listData.element.querySelector("input");
+        let iconWrapper = listData.element.querySelector(".listHeader");
+
+        title.classList.add("hide");
+        inp.classList.remove("hide");
+
+        iconWrapper.querySelector(":nth-child(3)").classList.add("hide");
+        iconWrapper.querySelector(":nth-child(4)").classList.remove("hide");
+        iconWrapper.querySelector(":nth-child(5)").classList.remove("hide");
+
+        inp.value = listData.name;
+        inp.focus();
+    }
+
+    function endEditList(listData){
+        let title = listData.element.querySelector("p");
+        let inp = listData.element.querySelector("input");
+        let iconWrapper = listData.element.querySelector(".listHeader");
+
+        title.classList.remove("hide");
+        inp.classList.add("hide");
+
+        iconWrapper.querySelector(":nth-child(3)").classList.remove("hide");
+        iconWrapper.querySelector(":nth-child(4)").classList.add("hide");
+        iconWrapper.querySelector(":nth-child(5)").classList.add("hide");
+
+        listData.name = inp.value;
+        title.innerHTML = listData.name;
     }
 
     function renderNewTask(taskData, parent){

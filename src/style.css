@@ -275,9 +275,10 @@ footer{
     align-items: center;
     margin-bottom: -8px;
 }
-.listHeader p{
+.listHeader p, .h2Inp{
     font-size: 1em;
     font-weight: 500;
+    flex-grow: 1;
 }
 .listFooter{
     display: flex;
