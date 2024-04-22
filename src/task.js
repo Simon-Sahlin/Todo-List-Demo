@@ -47,6 +47,6 @@ export class taskList{
     }
 
     deleteTask(taskData){
-        this.tasks.splice(this.tasks.indexOf(taskData), 1)
+        this.tasks.splice(this.tasks.indexOf(taskData), 1);
     }
 }

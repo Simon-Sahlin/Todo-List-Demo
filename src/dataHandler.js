@@ -1,5 +1,5 @@
 import {taskList, allTaskLists, task} from './task.js'
-
+import {updateFilterCount} from './filter.js'
 
 let dataHandler = (function(){
 
@@ -66,6 +66,7 @@ let dataHandler = (function(){
 
 
     function saveData(){
+        updateFilterCount();
         console.log("Saving Data...");
         let simplyfiedData = []
 
