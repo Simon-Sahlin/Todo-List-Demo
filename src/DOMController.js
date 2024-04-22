@@ -42,7 +42,7 @@ let taskPopup = (function(){
         else
             flagCard.classList.add("hide");
     }
-    
+
     document.querySelector("#taskPopupOptionsX").addEventListener("click", (event)=>hideTaskPopup(event));
     function hideTaskPopup(){
         wrapper.classList.add("hide");
@@ -110,8 +110,9 @@ let taskPopup = (function(){
         DOMController.updateTask(currentTask);
     }
 
+    document.querySelector(".optionsCard:nth-child(6)").addEventListener("click",()=>DOMController.deleteTask(currentTask));
 
-    return {showTaskPopup}
+    return {showTaskPopup, hideTaskPopup}
 })();
 
 let DOMController = (function(){
@@ -194,6 +195,12 @@ let DOMController = (function(){
         taskData.element = newTask;
     }
 
+    function deleteTask(taskData){
+        taskData.deleteTask();
+        taskData.element.remove();
+        taskPopup.hideTaskPopup();
+    }
+
     function createTaskElement(taskData){
         let newTask = document.createElement("div");
             newTask.classList.add("task");
@@ -269,7 +276,7 @@ let DOMController = (function(){
         listData.addTask(title);
     }
 
-    return({renderNewList, renderNewTask, updateTask});
+    return({renderNewList, renderNewTask, updateTask, deleteTask});
 })();
 export default DOMController;
 

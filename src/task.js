@@ -13,6 +13,9 @@ export class task{
     info(){
         return this
     }
+    deleteTask(){
+        this.parent.deleteTask(this);
+    }
 }
 
 export class taskList{
@@ -35,5 +38,9 @@ export class taskList{
             return;
         let newTask = new task(title, this, desc, date, complete, important)
         this.tasks.push(newTask)
+    }
+
+    deleteTask(taskData){
+        this.tasks.splice(this.tasks.indexOf(taskData), 1)
     }
 }
