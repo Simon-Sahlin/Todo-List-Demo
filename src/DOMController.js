@@ -273,6 +273,8 @@ let DOMController = (function(){
 
                     let checkbox = document.createElement("input");
                     checkbox.setAttribute("type", "checkbox")
+                    if (taskData.complete)
+                        checkbox.checked = true;
                     div1.appendChild(checkbox);
 
                 newTask.appendChild(div1);
