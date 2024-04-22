@@ -1,11 +1,5 @@
 import {taskList, allTaskLists, task} from './task.js'
 
-localStorage.colorSetting = "#a4509b";
-localStorage["colorSetting"] = "#a4509b";
-localStorage.setItem("colorSetting", "#a4509b");
-
-
-
 
 let dataHandler = (function(){
 
