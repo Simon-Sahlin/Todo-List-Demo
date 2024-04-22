@@ -196,7 +196,8 @@ let DOMController = (function(){
         textarea.addEventListener("focusout", ()=>submitNewTaskForm(textarea.value, listData));
         divHead.addEventListener("click", ()=>startEditList(listData));
         checkIcon.addEventListener("click", ()=>endEditList(listData));
-        h2Inp.addEventListener("focusout", ()=>endEditList(listData));
+        // h2Inp.addEventListener("focusout", ()=>endEditList(listData));
+        binIcon.addEventListener("click", ()=>deleteList(listData));
 
         return newList;
     }
@@ -231,6 +232,11 @@ let DOMController = (function(){
 
         listData.name = inp.value;
         title.innerHTML = listData.name;
+    }
+
+    function deleteList(listData){
+        console.log("bruh")
+        listData.element.remove();
     }
 
     function renderNewTask(taskData, parent){
