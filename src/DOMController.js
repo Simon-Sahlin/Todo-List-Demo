@@ -304,7 +304,6 @@ let DOMController = (function(){
                             let pDate = document.createElement("p");
                             pDate.innerHTML = taskData.date.toLocaleDateString("en-US", {day: 'numeric', month: 'short'});
                             div3.appendChild(pDate);
-                            console.log(taskData.date - new Date())
                             if (taskData.date - new Date() < -100)
                                 newTask.classList.add("pastDue");
                         }

@@ -1,5 +1,6 @@
 import './style.css'
 import {task, taskList} from './task.js'
+import './filter.js'
 
 
 let defaultList = new taskList("Default");

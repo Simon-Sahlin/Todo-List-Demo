@@ -3,12 +3,6 @@ import { allTaskLists } from "./task";
 let wrapper = document.querySelector("#filterWrapper");
 let filters = Array.from(wrapper.querySelectorAll(".filter"));
 
-let lists = allTaskLists
-
-export default function addList(list){
-    lists.push(list);
-}
-
 filters.forEach(element => {
     element.addEventListener("click", ()=>changeFilter(element))
 });
