@@ -42,10 +42,12 @@ let taskPopup = (function(){
         else
             flagCard.classList.add("hide");
     }
-
+    
+    document.querySelector("#taskPopupOptionsX").addEventListener("click", (event)=>hideTaskPopup(event));
     function hideTaskPopup(){
         wrapper.classList.add("hide");
     }
+
 
     let optionEditButt = document.querySelector(".optionsCard:nth-child(3)");
     optionEditButt.addEventListener("click", ()=>{toggleEdit()});
@@ -79,13 +81,15 @@ let taskPopup = (function(){
         DOMController.updateTask(currentTask);
     }
 
+    
     let optionDateButt = document.querySelector(".optionsCardDate");
     let optionDateP = document.querySelector(".optionsCardDate > input");
-    
+    optionDateButt.addEventListener("click", ()=>{openDate()});
+    optionDateP.addEventListener("focusout", ()=>updateDate());
+    optionDateP.addEventListener("change", ()=>updateDate());
     function openDate(){
         optionDateP.focus()
     }
-    
     function updateDate(){
         if (optionDateP.value != ""){
             currentTask.date = new Date(optionDateP.value);
@@ -97,23 +101,15 @@ let taskPopup = (function(){
         DOMController.updateTask(currentTask);
     }
     
-    optionDateButt.addEventListener("click", ()=>{openDate()});
-    optionDateP.addEventListener("focusout", ()=>updateDate());
-    optionDateP.addEventListener("change", ()=>updateDate());
-
 
     let optionFlagButt = document.querySelector(".optionsCard:nth-child(5)");
-
+    optionFlagButt.addEventListener("click", ()=>toggleImportant());
     function toggleImportant(){
         currentTask.important = !currentTask.important;
         showTaskPopup(null, currentTask);
         DOMController.updateTask(currentTask);
     }
 
-    optionFlagButt.addEventListener("click", ()=>toggleImportant());
-
-
-    document.querySelector("#taskPopupOptionsX").addEventListener("click", (event)=>hideTaskPopup(event));
 
     return {showTaskPopup}
 })();
