@@ -1,4 +1,5 @@
 import DOMController from "./DOMController";
+import dataHandler from './dataHandler.js'
 
 export let allTaskLists = [];
 
@@ -26,6 +27,7 @@ export class taskList{
         this.tasks = startingObjects;
         this.element = DOMController.renderNewList(this);
         allTaskLists.push(this);
+        dataHandler.saveData();
     }
 
     info(){
@@ -41,6 +43,7 @@ export class taskList{
             return;
         let newTask = new task(title, this, desc, date, complete, important)
         this.tasks.push(newTask)
+        dataHandler.saveData();
     }
 
     deleteTask(taskData){

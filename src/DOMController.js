@@ -1,5 +1,6 @@
 import {SVGAssets} from "./assets.js"
-import { task, taskList } from "./task.js";
+import { task, taskList, allTaskLists } from "./task.js";
+import dataHandler from './dataHandler.js'
 
 let taskPopup = (function(){
     
@@ -44,8 +45,9 @@ let taskPopup = (function(){
     }
 
     document.querySelector("#taskPopupOptionsX").addEventListener("click", (event)=>hideTaskPopup(event));
-    function hideTaskPopup(){
-        closeEditTask();
+    function hideTaskPopup(skipSave = false){
+        if (!skipSave)
+            closeEditTask();
         wrapper.classList.add("hide");
     }
 
@@ -59,6 +61,7 @@ let taskPopup = (function(){
         else
             openEditTask();
     }
+
     function openEditTask(){
         editOpen = true;
         titleInp.value = currentTask.title;
@@ -69,6 +72,7 @@ let taskPopup = (function(){
         titleInp.classList.remove("hide");
         descInp.classList.remove("hide");
     }
+
     function closeEditTask(){
         editOpen = false;
         h3.classList.remove("hide");
@@ -80,6 +84,7 @@ let taskPopup = (function(){
         currentTask.desc = descInp.value;
         showTaskPopup(null, currentTask);
         DOMController.updateTask(currentTask);
+        dataHandler.saveData();
     }
 
     
@@ -100,6 +105,7 @@ let taskPopup = (function(){
 
         showTaskPopup(null, currentTask);
         DOMController.updateTask(currentTask);
+        dataHandler.saveData();
     }
     
 
@@ -109,12 +115,15 @@ let taskPopup = (function(){
         currentTask.important = !currentTask.important;
         showTaskPopup(null, currentTask);
         DOMController.updateTask(currentTask);
+        dataHandler.saveData();
     }
 
     document.querySelector(".optionsCard:nth-child(6)").addEventListener("click",()=>DOMController.deleteTask(currentTask));
 
     return {showTaskPopup, hideTaskPopup, openEditTask}
 })();
+
+
 
 let DOMController = (function(){
     
@@ -233,11 +242,13 @@ let DOMController = (function(){
 
         listData.name = inp.value;
         title.innerHTML = listData.name;
+        dataHandler.saveData();
     }
 
     function deleteList(listData){
-        console.log("bruh")
         listData.element.remove();
+        allTaskLists.splice(allTaskLists.indexOf(listData), 1);
+        dataHandler.saveData();
     }
 
     function renderNewTask(taskData, parent){
@@ -249,6 +260,11 @@ let DOMController = (function(){
         return newTask;
     }
 
+    function toggleCompleteTask(taskData){
+        taskData.complete = taskData.element.querySelector("input").checked;
+        dataHandler.saveData();
+    }
+
     function updateTask(taskData){
         let wrapper = taskData.parent.element.children[1];
 
@@ -256,12 +272,14 @@ let DOMController = (function(){
 
         wrapper.replaceChild(newTask, taskData.element);
         taskData.element = newTask;
+        dataHandler.saveData();
     }
 
     function deleteTask(taskData){
         taskData.deleteTask();
         taskData.element.remove();
-        taskPopup.hideTaskPopup();
+        taskPopup.hideTaskPopup(true);
+        dataHandler.saveData();
     }
 
     function createTaskElement(taskData){
@@ -275,6 +293,7 @@ let DOMController = (function(){
                     checkbox.setAttribute("type", "checkbox")
                     if (taskData.complete)
                         checkbox.checked = true;
+                    checkbox.addEventListener("click",()=>toggleCompleteTask(taskData));
                     div1.appendChild(checkbox);
 
                 newTask.appendChild(div1);
