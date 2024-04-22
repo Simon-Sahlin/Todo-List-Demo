@@ -119,6 +119,12 @@ let DOMController = (function(){
     
     let content = document.querySelector("#content");
 
+    document.querySelector("#taskHeader .hoverBackround").addEventListener("click", ()=>createNewList());
+    function createNewList(){
+        let newList = new taskList("");
+        startEditList(newList);
+    }
+
     function renderNewList(listData){
         let newList = document.createElement("div");
         newList.classList.add("taskList");
