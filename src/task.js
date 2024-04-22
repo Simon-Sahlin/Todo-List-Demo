@@ -1,5 +1,7 @@
 import DOMController from "./DOMController";
 
+export let allTaskLists = [];
+
 export class task{
     constructor(title, parent, desc, date, complete, important){
         this.title = title;
@@ -23,6 +25,7 @@ export class taskList{
         this.name = name;
         this.tasks = startingObjects;
         this.element = DOMController.renderNewList(this);
+        allTaskLists.push(this);
     }
 
     info(){

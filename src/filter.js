@@ -1,10 +1,9 @@
-import DOMController from "./DOMController";
-import { task } from "./task";
+import { allTaskLists } from "./task";
 
 let wrapper = document.querySelector("#filterWrapper");
 let filters = Array.from(wrapper.querySelectorAll(".filter"));
 
-let lists = []
+let lists = allTaskLists
 
 export default function addList(list){
     lists.push(list);
@@ -21,11 +20,9 @@ function changeFilter(element){
     element.classList.add("selected");
     let filterIndex = filters.indexOf(element);
 
-    let newLists = [];
-
     switch (filterIndex) {
         case 0:
-            lists.forEach(list => {
+            allTaskLists.forEach(list => {
                 let renderList = false;
                 list.tasks.forEach(task => {
                     if (task.date != 0 && task.date - new Date() < 1000*60*60*24){
@@ -43,7 +40,7 @@ function changeFilter(element){
             break;
 
         case 1:
-            lists.forEach(list => {
+            allTaskLists.forEach(list => {
                 let renderList = false;
                 list.tasks.forEach(task => {
                     if (task.date != 0 && task.date - new Date() < 1000*60*60*24*8){
@@ -61,7 +58,7 @@ function changeFilter(element){
             break;
 
         case 2:
-            lists.forEach(list => {
+            allTaskLists.forEach(list => {
                 list.element.classList.remove("hide");
                 list.tasks.forEach(task => {
                     task.element.classList.remove("hide");
@@ -70,7 +67,7 @@ function changeFilter(element){
             break;
 
         case 3:
-            lists.forEach(list => {
+            allTaskLists.forEach(list => {
                 let renderList = false;
                 list.tasks.forEach(task => {
                     if (task.important){

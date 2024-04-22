@@ -1,6 +1,5 @@
 import './style.css'
 import {task, taskList} from './task.js'
-import addList from './filter.js'
 
 
 let defaultList = new taskList("Default");
@@ -14,6 +13,3 @@ anotherList.addTask("doon!", "", new Date(), true, true)
 anotherList.addTask("be done today!", "", new Date(), false, false)
 let today = new Date();
 anotherList.addTask("be done this week!", "", new Date(today.getFullYear(), today.getMonth(), today.getDate()+7), false, false)
-
-addList(defaultList)
-addList(anotherList)
