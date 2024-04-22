@@ -94,6 +94,7 @@ let taskPopup = (function(){
             currentTask.date = 0;
 
         showTaskPopup(null, currentTask);
+        DOMController.updateTask(currentTask);
     }
     
     optionDateButt.addEventListener("click", ()=>{openDate()});
@@ -106,6 +107,7 @@ let taskPopup = (function(){
     function toggleImportant(){
         currentTask.important = !currentTask.important;
         showTaskPopup(null, currentTask);
+        DOMController.updateTask(currentTask);
     }
 
     optionFlagButt.addEventListener("click", ()=>toggleImportant());
@@ -188,8 +190,6 @@ let DOMController = (function(){
     }
 
     function updateTask(taskData){
-        console.log(taskData.parent.element)
-        console.log(taskData.element)
         let wrapper = taskData.parent.element.children[1];
 
         let newTask = createTaskElement(taskData);
@@ -225,12 +225,19 @@ let DOMController = (function(){
                         if (taskData.desc != "")
                             div3.innerHTML = SVGAssets.list;
 
+                        if (taskData.important){
+                            div3.innerHTML += SVGAssets.flag;
+                            newTask.classList.add("important");
+                        }
+
                         if (taskData.date != 0){
                             div3.innerHTML += SVGAssets.alarm;
 
                             let pDate = document.createElement("p");
                             pDate.innerHTML = taskData.date.toLocaleDateString("en-US", {day: 'numeric', month: 'short'});
                             div3.appendChild(pDate);
+                            if (taskData.date - new Date())
+                                newTask.classList.add("pastDue");
                         }
 
                     div2.appendChild(div3);

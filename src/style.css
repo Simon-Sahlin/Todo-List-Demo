@@ -9,6 +9,7 @@
 
 :root {
     --red: #ff3860;
+    --red2:rgb(255, 56, 56);
     --red-dark: #ff1443;
     --red-darker: #dc2626;
     --red-light: #ff5c7c;
@@ -28,6 +29,8 @@
     --pink: #ff4088;
     --pink-dark: #ff1c72;
     --pink-light: #ff649e;
+    --yellow: #eab308;
+    --yellow-light: #fdd353;
     --gray0: #f8f8f8;
     --gray1: #dbe1e8;
     --gray2: #b2becd;
@@ -309,6 +312,13 @@ footer{
     transition: outline .05s;
     outline: 3px solid rgba(0, 0, 0, 0);
     transition: opacity .3s;
+}
+
+.task.important{
+    background-color: var(--yellow-light);
+}
+.task.pastDue{
+    background-color: var(--red2);
 }
 
 .taskCheck{
